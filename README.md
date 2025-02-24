@@ -12,21 +12,44 @@ Throughout this repository, I will assume things:
 - Basic configuration of Proxmox VE is done
 - Basic understanding on setting up and configuring LXC containers on a Proxmox VE host
 - Basic understanding of Container Templates (CT Templates) on a Proxmox VE host
+- Basic understanding of IP networking
+
+This list will likely grow over time and maybe some of the points will get a dedicated section in this repository.
 
 
-# Setup
-## Installing Ubuntu in LXC container
+# General
+I will generally use the latest LTS or latest non LTS stable build. At the time of writing, these are the following:
+- Ubuntu 24.04 LTS Desktop/Server
+- Ubuntu 24.10 Stable Desktop/Server
+- Ubuntu 24.04 Cloud Image (for use with `cloud-init`)
+- Ubuntu 24.10 Cloud Image (for use with `cloud-init`)
+
+For a list of available images, please see the following links:
+
+| Version | Link to download |
+| --- | --- |
+| Ubuntu Desktop | https://ubuntu.com/download/desktop |
+| Ubuntu Server | https://ubuntu.com/download/server |
+| Ubuntu Cloud Images | List all new or modified files |
+
+> Warning: Always verify downloaded images against an MD5/SHA256 checksum provided by the maintainer of the distribution.
+
+# Use Case 1: Running LXC containers with Ubuntu
+The first use case I came across then setting up my Proxmox host was to be able to run Ubuntu VMs and LXC containers with minimal effort. I knew that templating was a thing and in combination with `cloud-init`, I think I have found a solution that works for my purposes.
+
+## Ubuntu LXC container: Download an Ubuntu image
 
 
-## Updating the Ubuntu LXC container
+## Ubuntu LXC container: Installation
 
 
-
-## Uninstalling conflicting packages
-
+## Ubuntu LXC container: Update
 
 
-## Setting up apt repositories
+## Ubuntu LXC container: Removal of conflicting packages
+
+
+## Ubuntu LXC container: Setup for `apt` repositories
 First, we need to add the official GPG keys from Docker to our keyrings:
 ```bash
 # Add Docker's official GPG key:
@@ -52,7 +75,7 @@ Run the following command to update the `apt` repositories:
 sudo apt-get update
 ```
 
-## Installing the Docker Engine
+## Ubuntu LXC container: Installion of the Docker Engine
 To install the latest version of the Docker Engine on the system, run the following command:
 
 ```bash
