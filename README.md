@@ -1,5 +1,5 @@
-# proxmox-ubuntu-docker
-Collection of CLI commands and configurations for running Docker in a Ubuntu LXC container on Proxmox
+# Proxmox Setup
+Collection of my experiences, CLI commands and configurations for running a homelab server on Proxmox VE.
 
 
 # Motivation
