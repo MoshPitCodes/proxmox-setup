@@ -1,6 +1,7 @@
 # Proxmox Setup
 Collection of my experiences, CLI commands and configurations for running a homelab server on Proxmox VE.
 
+---
 
 # Motivation
 I have recently started to get interested more in setting up a homelab for learning a couple of things from hands-on experience. Running Docker in a Ubuntu LXC container on a Proxmox host was the first use case I had. After some research, I want to summarize my findings and add some context to what I was doing for the setup.
@@ -35,22 +36,33 @@ For a list of available images, please see the following links:
 > [!IMPORTANT]  
 > Always verify downloaded images against an MD5/SHA256 checksum provided by the maintainer of the distribution.
 
+---
+
 # Use Case 1: Running LXC containers with Ubuntu
 The first use case I came across then setting up my Proxmox host was to be able to run Ubuntu VMs and LXC containers with minimal effort. I knew that templating was a thing and in combination with `cloud-init`, I think I have found a solution that works for my purposes.
 
 ## Ubuntu LXC container: Download an Ubuntu image
-
+<tbd>
 
 ## Ubuntu LXC container: Installation
-
+<tbd>
 
 ## Ubuntu LXC container: Update
-
+<tbd>
 
 ## Ubuntu LXC container: Removal of conflicting packages
+<tbd>
+
+---
+
+# Use Case 2: Running Virtual Machines with a minimal Ubuntu installation
 
 
-## Ubuntu LXC container: Setup for `apt` repositories
+
+---
+
+# Docker Engine: 
+## Docker: Setup for `apt` repositories
 First, we need to add the official GPG keys from Docker to our keyrings:
 ```bash
 # Add Docker's official GPG key:
