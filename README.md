@@ -30,9 +30,10 @@ For a list of available images, please see the following links:
 | --- | --- |
 | Ubuntu Desktop | https://ubuntu.com/download/desktop |
 | Ubuntu Server | https://ubuntu.com/download/server |
-| Ubuntu Cloud Images | List all new or modified files |
+| Ubuntu Cloud Images | https://cloud-images.ubuntu.com/ |
 
-> Warning: Always verify downloaded images against an MD5/SHA256 checksum provided by the maintainer of the distribution.
+> [!IMPORTANT]  
+> Always verify downloaded images against an MD5/SHA256 checksum provided by the maintainer of the distribution.
 
 # Use Case 1: Running LXC containers with Ubuntu
 The first use case I came across then setting up my Proxmox host was to be able to run Ubuntu VMs and LXC containers with minimal effort. I knew that templating was a thing and in combination with `cloud-init`, I think I have found a solution that works for my purposes.
