@@ -63,7 +63,7 @@ The first use case I came across then setting up my Proxmox host was to be able 
 > [!IMPORTANT]
 > This step needs to be done in the CLI on the Proxmox host rather than the GUI. Make sure you know what you are doing and ensure that you have a backup of your host and the VMs/containers running on it.
 
-```
+```bash
 # Create a Virtual Machine with
 # id: 5000
 # memory: 2048MiB
@@ -71,13 +71,13 @@ The first use case I came across then setting up my Proxmox host was to be able 
 # hostname: ubuntu-cloud
 # network interface: net0
 # enable VirtIO SCSI drivers
-# set network bridge to `vmbr0` (default)
+# set network bridge to vmbr0 (default)
 qm create 5000 --memory 2048 --core 2 --name ubuntu-cloud --net0 virtio,bridge=vmbr0
 
 # Change to the directory where the Proxmox host stores downloaded/uploaded image files
 cd /var/lib/vz/template/iso/
 
-# Import the downloaded Ubuntu image to the virtual machine with the `id = 5000`
+# Import the downloaded Ubuntu image to the virtual machine with the id = 5000
 # example: qm importdisk 5000 oracular-server-cloudimg-amd64.img local-lvm
 qm importdisk 5000 /path/to/your/<cloud-image-name>.img <YOUR STORAGE HERE>
 
