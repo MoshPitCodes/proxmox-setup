@@ -38,27 +38,72 @@ For a list of available images, please see the following links:
 
 ---
 
-# Use Case 1: Running LXC containers with Ubuntu
+# Running Ubuntu in LXC containers
 The first use case I came across then setting up my Proxmox host was to be able to run Ubuntu VMs and LXC containers with minimal effort. I knew that templating was a thing and in combination with `cloud-init`, I think I have found a solution that works for my purposes.
 
-## Ubuntu LXC container: Download an Ubuntu image
+## Download an Ubuntu image
 <tbd>
 
-## Ubuntu LXC container: Installation
+## Installing Ubuntu
 <tbd>
 
-## Ubuntu LXC container: Update
+## Updating Ubuntu
 <tbd>
 
-## Ubuntu LXC container: Removal of conflicting packages
+## Removal of conflicting packages
 <tbd>
 
 ---
 
-# Use Case 2: Running Virtual Machines with a minimal Ubuntu installation
+# Running Ubuntu in Virtual Machines
+## Downloading an Ubuntu Image
 
 
+## Creating a Virtual Machine
+> [!IMPORTANT]
+> This step needs to be done in the CLI on the Proxmox host rather than the GUI. Make sure you know what you are doing and ensure that you have a backup of your host and the VMs/containers running on it.
 
+```
+# Create a Virtual Machine with
+# id: 5000
+# memory: 2048MiB
+# cpu-cores: 2
+# hostname: ubuntu-cloud
+# network interface: net0
+# enable VirtIO SCSI drivers
+# set network bridge to `vmbr0` (default)
+qm create 5000 --memory 2048 --core 2 --name ubuntu-cloud --net0 virtio,bridge=vmbr0
+
+# Change to the directory where the Proxmox host stores downloaded/uploaded image files
+cd /var/lib/vz/template/iso/
+
+# Import the downloaded Ubuntu image to the virtual machine with the `id = 5000`
+# example: qm importdisk 5000 oracular-server-cloudimg-amd64.img local-lvm
+qm importdisk 5000 /path/to/your/<cloud-image-name>.img <YOUR STORAGE HERE>
+
+# Set the raw disk as default for the VirtIO driver
+qm set 5000 --scsihw virtio-scsi-pci --scsi0 <YOUR STORAGE HERE>:vm-5000-disk-0
+
+# Mount a CDROM drive to the VM for use with cloud-init
+qm set 5000 --ide2 <YOUR STORAGE HERE>:cloudinit
+
+# Set the bootdisk
+qm set 5000 --boot c --bootdisk scsi0
+
+# (Optional) Set a VGA Serial socket for compatibility
+qm set 5000 --serial0 socket --vga serial0
+
+# Expand the default disk size
+qm disk resize 5000 scsi0 10G
+```
+
+## Creating a Cloud-Init Template
+<tbd>
+
+
+## Creating a Virtual Machine from a Template
+<tbd>
+  
 ---
 
 # Docker Engine: 
